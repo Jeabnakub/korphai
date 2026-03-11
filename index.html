@@ -151,7 +151,7 @@
      </div>
      <form id="data-form" class="p-6 md:p-8 space-y-6"><!-- Row 1 -->
       <div class="grid md:grid-cols-2 gap-5">
-       <div><label class="block text-sm font-semibold text-gray-800 mb-2"> <span class="text-red-500 font-bold">*</span> เลขหนังสือ สบร. </label> <input type="text" id="doc-number" required class="w-full px-4 py-3 border border-gray-200 rounded-lg input-focus transition-all text-sm shadow-sm" placeholder="กรอกเลขหนังสือ">
+       <div><label class="block text-sm font-semibold text-gray-800 mb-2"> <span class="text-red-500 font-bold">*</span> เลขหนังสือ สบต </label> <input type="text" id="doc-number" required class="w-full px-4 py-3 border border-gray-200 rounded-lg input-focus transition-all text-sm shadow-sm" placeholder="กรอกเลขหนังสือ">
        </div>
        <div><label class="block text-sm font-semibold text-gray-800 mb-2"> <span class="text-red-500 font-bold">*</span> วันที่รับตามเลขหนังสือ </label> <input type="date" id="receive-date" required class="w-full px-4 py-3 border border-gray-200 rounded-lg input-focus transition-all text-sm shadow-sm">
        </div>
@@ -165,7 +165,7 @@
       <div><label class="block text-sm font-semibold text-gray-800 mb-2"> <span class="text-red-500 font-bold">*</span> ปัญหาที่พบ </label> <textarea id="problem-detail" required rows="4" class="w-full px-4 py-3 border border-gray-200 rounded-lg input-focus transition-all text-sm resize-none shadow-sm" placeholder="อธิบายรายละเอียดปัญหาที่พบ..."></textarea>
       </div><!-- Row 4 -->
       <div class="grid md:grid-cols-2 gap-5">
-       <div><label class="block text-sm font-semibold text-gray-800 mb-2"> <span class="text-red-500 font-bold">*</span> สถานะการดำเนินการ </label> <select id="status" required class="w-full px-4 py-3 border border-gray-200 rounded-lg input-focus transition-all text-sm shadow-sm"> <option value="">-- เลือกสถานะ --</option> <option value="อยู่ระหว่างตรวจสอบข้อมูล">อยู่ระหว่างตรวจสอบข้อมูล</option> <option value="อยู่ระหว่างประสานงานผู้แจ้ง">อยู่ระหว่างประสานงานผู้แจ้ง</option> <option value="อยู่ระหว่างประสานงาน OS">อยู่ระหว่างประสานงาน OS</option> <option value="อยู่ระหว่างเสนอหนังสือพิจารณา/อนุมัติ">อยู่ระหว่างเสนอหนังสือพิจารณา/อนุมัติ</option> <option value="ส่งต่อกลุ่มงานอื่นๆ ที่เกี่ยวข้อง">ส่งต่อกลุ่มงานอื่นๆ ที่เกี่ยวข้อง</option> <option value="ดำเนินการเสร็จสิ้น/ปิดเคส">ดำเนินการเสร็จสิ้น/ปิดเคส</option> </select>
+       <div><label class="block text-sm font-semibold text-gray-800 mb-2"> <span class="text-red-500 font-bold">*</span> สถานะการดำเนินการ </label> <select id="status" required class="w-full px-4 py-3 border border-gray-200 rounded-lg input-focus transition-all text-sm shadow-sm"> <option value="">-- เลือกสถานะ --</option> <option value="อยู่ระหว่างตรวจสอบข้อมูล">อยู่ระหว่างตรวจสอบข้อมูล</option> <option value="อยู่ระหว่างประสานงานผู้แจ้ง">อยู่ระหว่างประสานงานผู้แจ้ง</option> <option value="อยู่ระหว่างประสานงาน OS">อยู่ระหว่างประสานงาน OS</option> <option value="อยู่ระหว่างเสนอหนังสือพิจารณา/อนุมัติ">อยู่ระหว่างเสนอหนังสือพิจารณา/อนุมัติ</option> <option value="ส่งต่อกลุ่มงานอื่นๆ ที่เกี่ยวข้อง">ส่งต่อกลุ่มงานอื่นๆ ที่เกี่ยวข้อง</option> <option value="นำส่งผู้อำนวยการ">นำส่งผู้อำนวยการ</option> <option value="ดำเนินการเสร็จสิ้น/ปิดเคส">ดำเนินการเสร็จสิ้น/ปิดเคส</option> </select>
        </div>
        <div><label class="block text-sm font-semibold text-gray-800 mb-2"> หมายเหตุ </label> <input type="text" id="remark" class="w-full px-4 py-3 border border-gray-200 rounded-lg input-focus transition-all text-sm shadow-sm" placeholder="หมายเหตุเพิ่มเติม (ถ้ามี)">
        </div>
@@ -257,16 +257,39 @@
       lucide.createIcons();
     }
 
-    // Format date to Thai
+    // Format date to Thai - handle both YYYY-MM-DD and ISO 8601 formats
     function formatThaiDate(dateStr) {
-      if (!dateStr) return '-';
-      const date = new Date(dateStr);
+      if (!dateStr || typeof dateStr !== 'string') return '-';
+      
       const thaiMonths = ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 
                          'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'];
-      const day = date.getDate();
-      const month = thaiMonths[date.getMonth()];
-      const year = date.getFullYear() + 543;
-      return `${day} ${month} ${year}`;
+      
+      // If already in Thai format, return as-is
+      if (thaiMonths.some(m => dateStr.includes(m))) return dateStr;
+      
+      // Extract YYYY-MM-DD from both formats (YYYY-MM-DD or ISO 8601)
+      const match = dateStr.match(/^(\d{4})-(\d{2})-(\d{2})/);
+      if (match) {
+        let year = parseInt(match[1], 10);
+        const month = parseInt(match[2], 10);
+        const day = parseInt(match[3], 10);
+        
+        // Validate ranges
+        if (year >= 1900 && year <= 3000 && month >= 1 && month <= 12 && day >= 1 && day <= 31) {
+          const thaiMonth = thaiMonths[month - 1];
+          
+          // If year is already in Thai Buddhist Era (> 2400), use as-is
+          if (year > 2400) {
+            return `${day} ${thaiMonth} ${year}`;
+          } else {
+            // Convert to Thai Buddhist Era (add 543)
+            const thaiYear = year + 543;
+            return `${day} ${thaiMonth} ${thaiYear}`;
+          }
+        }
+      }
+      
+      return dateStr;
     }
 
     // Get current Thai datetime
@@ -481,6 +504,7 @@
                     <option value="อยู่ระหว่างประสานงาน OS" ${response.data.status === 'อยู่ระหว่างประสานงาน OS' ? 'selected' : ''}>อยู่ระหว่างประสานงาน OS</option>
                     <option value="อยู่ระหว่างเสนอหนังสือพิจารณา/อนุมัติ" ${response.data.status === 'อยู่ระหว่างเสนอหนังสือพิจารณา/อนุมัติ' ? 'selected' : ''}>อยู่ระหว่างเสนอหนังสือพิจารณา/อนุมัติ</option>
                     <option value="ส่งต่อกลุ่มงานอื่นๆ ที่เกี่ยวข้อง" ${response.data.status === 'ส่งต่อกลุ่มงานอื่นๆ ที่เกี่ยวข้อง' ? 'selected' : ''}>ส่งต่อกลุ่มงานอื่นๆ ที่เกี่ยวข้อง</option>
+                    <option value="นำส่งผู้อำนวยการ" ${response.data.status === 'นำส่งผู้อำนวยการ' ? 'selected' : ''}>นำส่งผู้อำนวยการ</option>
                     <option value="ดำเนินการเสร็จสิ้น/ปิดเคส" ${response.data.status === 'ดำเนินการเสร็จสิ้น/ปิดเคส' ? 'selected' : ''}>ดำเนินการเสร็จสิ้น/ปิดเคส</option>
                   </select>
                   <button onclick="updateStatus()" class="btn-primary text-white px-6 py-2.5 rounded-lg font-medium flex items-center justify-center gap-2 transition-all">
@@ -581,5 +605,5 @@
     // Set default date to today
     document.getElementById('receive-date').valueAsDate = new Date();
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9da8e1bff19f8963',t:'MTc3MzIxNDUyMC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9da917d957308966',t:'MTc3MzIxNjczNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
