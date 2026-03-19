@@ -129,13 +129,11 @@
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
  </head>
  <body class="h-full bg-gray-50">
-  <div id="app" class="h-full overflow-auto">
-   <!-- Header -->
+  <div id="app" class="h-full overflow-auto"><!-- Header -->
    <header class="gradient-header text-white py-8 px-6 shadow-xl">
     <div class="max-w-6xl mx-auto relative z-10">
      <div class="flex items-center gap-5">
-      <div class="bg-white/20 backdrop-blur-lg p-4 rounded-2xl shadow-xl border border-white/30">
-       <i data-lucide="clipboard-list" class="w-8 h-8 text-white"></i>
+      <div class="bg-white/20 backdrop-blur-lg p-4 rounded-2xl shadow-xl border border-white/30"><i data-lucide="clipboard-list" class="w-8 h-8 text-white"></i>
       </div>
       <div>
        <h1 id="system-title" class="text-3xl md:text-4xl font-bold tracking-tight">ระบบจัดเก็บสถิติและปัญหากอไผ่</h1>
@@ -144,46 +142,35 @@
      </div>
     </div>
    </header>
-   <main class="max-w-6xl mx-auto p-4 md:p-6 space-y-6">
-    <!-- Tab Navigation -->
-    <div class="flex gap-3 bg-white/80 backdrop-blur-lg rounded-2xl p-4 card-shadow border border-white">
-     <button id="tab-add" onclick="switchTab('add')" class="flex-1 py-3 px-5 rounded-xl font-semibold transition-all flex items-center justify-center gap-2 bg-gradient-to-r from-green-500 to-green-600 text-white tab-btn active shadow-lg"> <i data-lucide="plus-circle" class="w-5 h-5"></i> <span>เพิ่มข้อมูลใหม่</span> </button> <button id="tab-search" onclick="switchTab('search')" class="flex-1 py-3 px-5 rounded-xl font-semibold transition-all flex items-center justify-center gap-2 text-gray-700 hover:bg-gray-100 tab-btn"> <i data-lucide="search" class="w-5 h-5"></i> <span>เรียกดูข้อมูล</span> </button>
+   <main class="max-w-6xl mx-auto p-4 md:p-6 space-y-6"><!-- Tab Navigation -->
+    <div class="flex gap-3 bg-white/80 backdrop-blur-lg rounded-2xl p-4 card-shadow border border-white"><button id="tab-add" onclick="switchTab('add')" class="flex-1 py-3 px-5 rounded-xl font-semibold transition-all flex items-center justify-center gap-2 bg-gradient-to-r from-green-500 to-green-600 text-white tab-btn active shadow-lg"> <i data-lucide="plus-circle" class="w-5 h-5"></i> <span>เพิ่มข้อมูลใหม่</span> </button> <button id="tab-search" onclick="switchTab('search')" class="flex-1 py-3 px-5 rounded-xl font-semibold transition-all flex items-center justify-center gap-2 text-gray-700 hover:bg-gray-100 tab-btn"> <i data-lucide="search" class="w-5 h-5"></i> <span>เรียกดูข้อมูล</span> </button>
     </div><!-- Add Form Section -->
     <section id="section-add" class="bg-white/90 backdrop-blur-lg rounded-2xl card-shadow overflow-hidden border border-white">
      <div class="section-header text-white px-6 py-4" style="--header-start: #10b981; --header-end: #059669;">
       <h2 class="font-bold text-lg flex items-center gap-3 relative z-10"><i data-lucide="file-plus" class="w-6 h-6"></i> บันทึกข้อมูลปัญหาใหม่</h2>
      </div>
-     <form id="data-form" class="p-6 md:p-8 space-y-6">
-      <!-- Row 1 -->
+     <form id="data-form" class="p-6 md:p-8 space-y-6"><!-- Row 1 -->
       <div class="grid md:grid-cols-2 gap-5">
-       <div>
-        <label class="block text-sm font-semibold text-gray-800 mb-2"> <span class="text-red-500 font-bold">*</span> เลขหนังสือ สบต </label> <input type="text" id="doc-number" required class="w-full px-4 py-3 border border-gray-200 rounded-lg input-focus transition-all text-sm shadow-sm" placeholder="กรอกเลขหนังสือ">
+       <div><label class="block text-sm font-semibold text-gray-800 mb-2"> <span class="text-red-500 font-bold">*</span> เลขหนังสือ สบต </label> <input type="text" id="doc-number" required class="w-full px-4 py-3 border border-gray-200 rounded-lg input-focus transition-all text-sm shadow-sm" placeholder="กรอกเลขหนังสือ">
        </div>
-       <div>
-        <label class="block text-sm font-semibold text-gray-800 mb-2"> <span class="text-red-500 font-bold">*</span> วันที่รับตามเลขหนังสือ </label> <input type="date" id="receive-date" required class="w-full px-4 py-3 border border-gray-200 rounded-lg input-focus transition-all text-sm shadow-sm">
+       <div><label class="block text-sm font-semibold text-gray-800 mb-2"> <span class="text-red-500 font-bold">*</span> วันที่รับตามเลขหนังสือ </label> <input type="date" id="receive-date" required class="w-full px-4 py-3 border border-gray-200 rounded-lg input-focus transition-all text-sm shadow-sm">
        </div>
       </div><!-- Row 2 -->
       <div class="grid md:grid-cols-2 gap-5">
-       <div>
-        <label class="block text-sm font-semibold text-gray-800 mb-2"> <span class="text-red-500 font-bold">*</span> ชื่อ-นามสกุล ผู้รับผิดชอบ </label> <select id="staff-name" required class="w-full px-4 py-3 border border-gray-200 rounded-lg input-focus transition-all text-sm shadow-sm"> <option value="">-- เลือกผู้รับผิดชอบ --</option> <option value="นางสาวราตรี ชำนาญพงศ์">นางสาวราตรี ชำนาญพงศ์</option> <option value="นายเทวินทร์ พิริยะวณิชย์">นายเทวินทร์ พิริยะวณิชย์</option> <option value="นายศุภกิตติ์ บุญแก้ว">นายศุภกิตติ์ บุญแก้ว</option> <option value="นางสาวกัญญารัตน์ ฉิมะวงษ์">นางสาวกัญญารัตน์ ฉิมะวงษ์</option> <option value="นางสาวณัฎฐ์ชญา เพียรทำ">นางสาวณัฎฐ์ชญา เพียรทำ</option> <option value="นางสาวมุขดา อุดหนุน">นางสาวมุขดา อุดหนุน</option> <option value="นางสาวศิริรัตน์ หยกรัศมีโรจน์">นางสาวศิริรัตน์ หยกรัศมีโรจน์</option> </select>
+       <div><label class="block text-sm font-semibold text-gray-800 mb-2"> <span class="text-red-500 font-bold">*</span> ชื่อ-นามสกุล ผู้รับผิดชอบ </label> <select id="staff-name" required class="w-full px-4 py-3 border border-gray-200 rounded-lg input-focus transition-all text-sm shadow-sm"> <option value="">-- เลือกผู้รับผิดชอบ --</option> <option value="นางสาวราตรี ชำนาญพงศ์">นางสาวราตรี ชำนาญพงศ์</option> <option value="นายเทวินทร์ พิริยะวณิชย์">นายเทวินทร์ พิริยะวณิชย์</option> <option value="นายศุภกิตติ์ บุญแก้ว">นายศุภกิตติ์ บุญแก้ว</option> <option value="นางสาวกัญญารัตน์ ฉิมะวงษ์">นางสาวกัญญารัตน์ ฉิมะวงษ์</option> <option value="นางสาวณัฎฐ์ชญา เพียรทำ">นางสาวณัฎฐ์ชญา เพียรทำ</option> <option value="นางสาวมุขดา อุดหนุน">นางสาวมุขดา อุดหนุน</option> <option value="นางสาวศิริรัตน์ หยกรัศมีโรจน์">นางสาวศิริรัตน์ หยกรัศมีโรจน์</option> <option value="นางสาวจีรนันท์ เอกวรรณัง">นางสาวจีรนันท์ เอกวรรณัง</option> </select>
        </div>
-       <div>
-        <label class="block text-sm font-semibold text-gray-800 mb-2"> <span class="text-red-500 font-bold">*</span> ประเภทของปัญหา </label> <select id="problem-type" required class="w-full px-4 py-3 border border-gray-200 rounded-lg input-focus transition-all text-sm shadow-sm"> <option value="">-- เลือกประเภทปัญหา --</option> <option value="Fast Track">Fast Track</option> <option value="ข้อมูลแก้ไขข้อมูล">ข้อมูลแก้ไขข้อมูล</option> <option value="ระบบ eworkpermit">ระบบ eworkpermit</option> <option value="ขอคืนสถานะ">ขอคืนสถานะ</option> <option value="ติดตามเคส OS">ติดตามเคส OS</option> <option value="ร้องเรียน/เสนอแนะ">ร้องเรียน/เสนอแนะ</option> <option value="อื่น ๆ">อื่น ๆ</option> </select>
+       <div><label class="block text-sm font-semibold text-gray-800 mb-2"> <span class="text-red-500 font-bold">*</span> ประเภทของปัญหา </label> <select id="problem-type" required class="w-full px-4 py-3 border border-gray-200 rounded-lg input-focus transition-all text-sm shadow-sm"> <option value="">-- เลือกประเภทปัญหา --</option> <option value="Fast Track">Fast Track</option> <option value="ข้อมูลแก้ไขข้อมูล">ข้อมูลแก้ไขข้อมูล</option> <option value="ระบบ eworkpermit">ระบบ eworkpermit</option> <option value="ขอคืนสถานะ">ขอคืนสถานะ</option> <option value="ติดตามเคส OS">ติดตามเคส OS</option> <option value="ร้องเรียน/เสนอแนะ">ร้องเรียน/เสนอแนะ</option> <option value="อื่น ๆ">อื่น ๆ</option> </select>
        </div>
       </div><!-- Row 3 -->
-      <div>
-       <label class="block text-sm font-semibold text-gray-800 mb-2"> <span class="text-red-500 font-bold">*</span> ปัญหาที่พบ </label> <textarea id="problem-detail" required rows="4" class="w-full px-4 py-3 border border-gray-200 rounded-lg input-focus transition-all text-sm resize-none shadow-sm" placeholder="อธิบายรายละเอียดปัญหาที่พบ..."></textarea>
+      <div><label class="block text-sm font-semibold text-gray-800 mb-2"> <span class="text-red-500 font-bold">*</span> ปัญหาที่พบ </label> <textarea id="problem-detail" required rows="4" class="w-full px-4 py-3 border border-gray-200 rounded-lg input-focus transition-all text-sm resize-none shadow-sm" placeholder="อธิบายรายละเอียดปัญหาที่พบ..."></textarea>
       </div><!-- Row 4 -->
       <div class="grid md:grid-cols-2 gap-5">
-       <div>
-        <label class="block text-sm font-semibold text-gray-800 mb-2"> <span class="text-red-500 font-bold">*</span> สถานะการดำเนินการ </label> <select id="status" required class="w-full px-4 py-3 border border-gray-200 rounded-lg input-focus transition-all text-sm shadow-sm"> <option value="">-- เลือกสถานะ --</option> <option value="อยู่ระหว่างตรวจสอบข้อมูล">อยู่ระหว่างตรวจสอบข้อมูล</option> <option value="อยู่ระหว่างประสานงานผู้แจ้ง">อยู่ระหว่างประสานงานผู้แจ้ง</option> <option value="อยู่ระหว่างประสานงาน OS">อยู่ระหว่างประสานงาน OS</option> <option value="อยู่ระหว่างเสนอหนังสือพิจารณา/อนุมัติ">อยู่ระหว่างเสนอหนังสือพิจารณา/อนุมัติ</option> <option value="ส่งต่อกลุ่มงานอื่นๆ ที่เกี่ยวข้อง">ส่งต่อกลุ่มงานอื่นๆ ที่เกี่ยวข้อง</option> <option value="นำส่งผู้อำนวยการ">นำส่งผู้อำนวยการ</option> <option value="ดำเนินการเสร็จสิ้น/ปิดเคส">ดำเนินการเสร็จสิ้น/ปิดเคส</option> </select>
+       <div><label class="block text-sm font-semibold text-gray-800 mb-2"> <span class="text-red-500 font-bold">*</span> สถานะการดำเนินการ </label> <select id="status" required class="w-full px-4 py-3 border border-gray-200 rounded-lg input-focus transition-all text-sm shadow-sm"> <option value="">-- เลือกสถานะ --</option> <option value="อยู่ระหว่างตรวจสอบข้อมูล">อยู่ระหว่างตรวจสอบข้อมูล</option> <option value="อยู่ระหว่างประสานงานผู้แจ้ง">อยู่ระหว่างประสานงานผู้แจ้ง</option> <option value="อยู่ระหว่างประสานงาน OS">อยู่ระหว่างประสานงาน OS</option> <option value="อยู่ระหว่างเสนอหนังสือพิจารณา/อนุมัติ">อยู่ระหว่างเสนอหนังสือพิจารณา/อนุมัติ</option> <option value="ส่งต่อกลุ่มงานอื่นๆ ที่เกี่ยวข้อง">ส่งต่อกลุ่มงานอื่นๆ ที่เกี่ยวข้อง</option> <option value="นำส่งผู้อำนวยการ">นำส่งผู้อำนวยการ</option> <option value="ดำเนินการเสร็จสิ้น/ปิดเคส">ดำเนินการเสร็จสิ้น/ปิดเคส</option> </select>
        </div>
-       <div>
-        <label class="block text-sm font-semibold text-gray-800 mb-2"> หมายเหตุ </label> <input type="text" id="remark" class="w-full px-4 py-3 border border-gray-200 rounded-lg input-focus transition-all text-sm shadow-sm" placeholder="หมายเหตุเพิ่มเติม (ถ้ามี)">
+       <div><label class="block text-sm font-semibold text-gray-800 mb-2"> หมายเหตุ </label> <input type="text" id="remark" class="w-full px-4 py-3 border border-gray-200 rounded-lg input-focus transition-all text-sm shadow-sm" placeholder="หมายเหตุเพิ่มเติม (ถ้ามี)">
        </div>
       </div><!-- Buttons -->
-      <div class="flex flex-wrap gap-3 pt-6 border-t-2 border-gray-100">
-       <button type="submit" class="btn-primary text-white px-7 py-3 rounded-lg font-semibold flex items-center gap-2 transition-all"> <i data-lucide="save" class="w-5 h-5"></i> บันทึกข้อมูล </button> <button type="button" onclick="resetForm()" class="bg-gray-400 hover:bg-gray-500 text-white px-7 py-3 rounded-lg font-semibold flex items-center gap-2 transition-all shadow-md"> <i data-lucide="refresh-cw" class="w-5 h-5"></i> ล้างข้อมูล </button>
+      <div class="flex flex-wrap gap-3 pt-6 border-t-2 border-gray-100"><button type="submit" class="btn-primary text-white px-7 py-3 rounded-lg font-semibold flex items-center gap-2 transition-all"> <i data-lucide="save" class="w-5 h-5"></i> บันทึกข้อมูล </button> <button type="button" onclick="resetForm()" class="bg-gray-400 hover:bg-gray-500 text-white px-7 py-3 rounded-lg font-semibold flex items-center gap-2 transition-all shadow-md"> <i data-lucide="refresh-cw" class="w-5 h-5"></i> ล้างข้อมูล </button>
       </div>
      </form>
     </section><!-- Search Section -->
@@ -191,11 +178,9 @@
      <div class="bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-3">
       <h2 class="font-semibold flex items-center gap-2"><i data-lucide="database" class="w-5 h-5"></i> เรียกดูข้อมูลจากฐานข้อมูล</h2>
      </div>
-     <div class="p-6 space-y-5">
-      <!-- Search Box -->
+     <div class="p-6 space-y-5"><!-- Search Box -->
       <div class="flex flex-col md:flex-row gap-3">
-       <div class="flex-1">
-        <input type="text" id="search-doc-number" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg input-focus transition-all text-sm" placeholder="พิมพ์เลขหนังสือที่ต้องการค้นหา...">
+       <div class="flex-1"><input type="text" id="search-doc-number" class="w-full px-4 py-2.5 border border-gray-300 rounded-lg input-focus transition-all text-sm" placeholder="พิมพ์เลขหนังสือที่ต้องการค้นหา...">
        </div><button onclick="searchData()" class="btn-primary text-white px-6 py-2.5 rounded-lg font-medium flex items-center justify-center gap-2 transition-all"> <i data-lucide="search" class="w-5 h-5"></i> ค้นหาข้อมูล </button>
       </div><!-- Search Results -->
       <div id="search-results" class="hidden">
@@ -203,14 +188,12 @@
         <div class="bg-gray-50 px-4 py-3 border-b">
          <h3 class="font-semibold text-gray-800 flex items-center gap-2"><i data-lucide="file-text" class="w-5 h-5 text-green-600"></i> ผลการค้นหา</h3>
         </div>
-        <div id="result-content" class="p-4 space-y-4">
-         <!-- Results will be inserted here -->
+        <div id="result-content" class="p-4 space-y-4"><!-- Results will be inserted here -->
         </div>
        </div>
       </div><!-- No Results -->
       <div id="no-results" class="hidden text-center py-8">
-       <div class="inline-flex items-center justify-center w-16 h-16 bg-gray-100 rounded-full mb-4">
-        <i data-lucide="search-x" class="w-8 h-8 text-gray-400"></i>
+       <div class="inline-flex items-center justify-center w-16 h-16 bg-gray-100 rounded-full mb-4"><i data-lucide="search-x" class="w-8 h-8 text-gray-400"></i>
        </div>
        <p class="text-gray-500">ไม่พบข้อมูลที่ค้นหา</p>
       </div>
@@ -622,5 +605,5 @@
     // Set default date to today
     document.getElementById('receive-date').valueAsDate = new Date();
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9daeef81e124a1bc',t:'MTc3MzI3Nzk5OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9de885fcb5958941',t:'MTc3Mzg4MTg1MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
